@@ -1,6 +1,6 @@
 # @lavaz/store 🚀
 
-![Lavaz Store Logo](https://github.com/huylongnguyendev/magos/blob/main/assets/logo-mago-40.png)
+![Lavaz Store Logo](https://github.com/huylongnguyendev/lavaz-store/blob/main/assets/logo-80.png)
 
 A lightweight, high-level state management infrastructure for React and JavaScript applications. Designed for complex workspaces, not just simple kanbans.
 
