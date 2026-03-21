@@ -1,5 +1,5 @@
-import { BoxBuilder, Next, PrevFn } from "../@types/box.type.js";
-import { Persistance } from "../@types/persist.type.js";
+import { BoxBuilder, Next, PrevFn } from "../types/box.type.js";
+import { Persistance } from "../types/persist.type.js";
 import { validateState } from "../lib/box-validator.js";
 
 export const createBox = <S, A>(
@@ -24,7 +24,8 @@ export const createBox = <S, A>(
     },
 
     create: () => {
-      if (!isProduction || isTest) validateState(initialState, "initialState", true);
+      if (!isProduction || isTest)
+        validateState(initialState, "initialState", true);
 
       let state = initialState;
       let listeners = new Set<(state: S) => void>();

@@ -1,17 +1,20 @@
 {
-  "name": "store",
-  "version": "0.0.0",
+  "name": "@lavaz/store",
+  "version": "1.0.0-beta.1",
   "description": "",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "test": "vitest",
     "dev": "tsup --watch",
-    "build": "npm run clean && tsup src/index.ts --format esm,cjs --dts --clean --external react",
+    "build": "npm run clean && tsup src/index.ts --format esm,cjs --dts --clean --external react --minify --splitting",
     "release:patch": "npm run build && npm version patch && npm publish"
   },
   "exports": {
@@ -25,6 +28,9 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "Nguyen Huy Long",
   "license": "ISC",
@@ -39,6 +45,7 @@
     "jsdom": "^29.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "rimraf": "^6.1.3",
     "rslib": "^0.0.10",
     "tsc-alias": "^1.8.16",
     "tsup": "^8.5.1",

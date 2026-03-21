@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useSyncExternalStore } from "react";
-import { CreateBox } from "../@types/box.type.js";
+import { CreateBox } from "../types/box.type.js";
 import { shallowCompare } from "../lib/shallow-compare.js";
 
 export const useAppStore = <S, A, R>(

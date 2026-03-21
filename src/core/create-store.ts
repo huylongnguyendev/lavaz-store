@@ -1,4 +1,4 @@
-import { CreateBox } from "../@types/box.type.js";
+import { CreateBox } from "../types/box.type.js";
 
 export const createStore = <T extends Record<string, CreateBox>>(
   boxes: T,
