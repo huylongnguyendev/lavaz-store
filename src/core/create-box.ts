@@ -1,20 +1,13 @@
 import { BoxBuilder, Next, PrevFn } from "../types/box.type.js";
 import { Persistance } from "../types/persist.type.js";
 import { validateState } from "../lib/box-validator.js";
+import { checkEnv } from "./checkEnv.js";
 
 export const createBox = <S, A>(
   initialState: S,
   actions: (set: (next: Next<S>) => void) => A,
 ): BoxBuilder<S, A> => {
-  const isProduction =
-    (typeof process !== "undefined" && process.env.NODE_ENV === "production") ||
-    (typeof import.meta !== "undefined" &&
-      (import.meta as any).env.NODE_ENV === "production");
-
-  const isTest =
-    typeof process !== "undefined" &&
-    (process.env.NODE_ENV === "test" || !!process.env.VITEST);
-
+  const { isProduction, isTest } = checkEnv();
   let persistConfig: Persistance | null = null;
 
   const builder = {

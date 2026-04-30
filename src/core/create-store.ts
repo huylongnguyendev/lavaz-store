@@ -1,16 +1,10 @@
 import { CreateBox } from "../types/box.type.js";
+import { checkEnv } from "./checkEnv.js";
 
 export const createStore = <T extends Record<string, CreateBox>>(
   boxes: T,
 ): T => {
-  const isProduction =
-    (typeof process !== "undefined" && process.env.NODE_ENV === "production") ||
-    (typeof import.meta !== "undefined" &&
-      (import.meta as any).env.NODE_ENV === "production");
-
-  const isTest =
-    typeof process !== "undefined" &&
-    (process.env.NODE_ENV === "test" || !!process.env.VITEST);
+  const { isProduction, isTest } = checkEnv();
 
   if (!isProduction || isTest) {
     const keys = Object.keys(boxes);
@@ -24,7 +18,7 @@ export const createStore = <T extends Record<string, CreateBox>>(
 
       if (isExistingBox)
         throw new Error(
-          `[Lavaz]: Conflict. The box you are trying to assign to "${key}" is already used by "${isExistingBox}`,
+          `[Lavaz]: Conflict. The box you are trying to assign to "${key}" is already used by "${isExistingBox}"`,
         );
 
       boxRegister.set(box.boxId, key);
