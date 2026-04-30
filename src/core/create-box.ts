@@ -24,14 +24,18 @@ export const createBox = <S, A>(
       let listeners = new Set<(state: S) => void>();
 
       const storageKey = persistConfig ? `lavaz-${persistConfig.name}` : null;
-      const storage =
-        persistConfig?.storage === "session"
+
+      const getStorage = () => {
+        if (typeof window === "undefined") return null;
+        return persistConfig?.storage === "session"
           ? window.sessionStorage
           : window.localStorage;
+      };
 
       if (typeof window !== "undefined" && storageKey) {
         try {
-          const savedSate = storage.getItem(storageKey);
+          const storage = getStorage(); // Chỉ gọi khi chắc chắn có window
+          const savedSate = storage?.getItem(storageKey);
           if (savedSate) state = JSON.parse(savedSate);
         } catch (error) {
           if (!isProduction)
@@ -48,7 +52,9 @@ export const createBox = <S, A>(
 
         if (!Object.is(state, newState)) {
           state = newState;
-          if (storageKey) storage.setItem(storageKey, JSON.stringify(state));
+          if (storageKey && typeof window !== "undefined") {
+            getStorage()?.setItem(storageKey, JSON.stringify(state));
+          }
 
           listeners.forEach((listener) => listener(state));
         }
