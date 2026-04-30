@@ -1,6 +1,6 @@
 {
   "name": "@lavaz/store",
-  "version": "1.0.6",
+  "version": "1.0.4",
   "description": "",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -15,7 +15,7 @@
     "test": "vitest",
     "dev": "tsup --watch",
     "build": "npm run clean && tsup src/index.ts --format esm,cjs --dts --clean --external react --minify --splitting",
-    "release:patch": "npm run build && npm version patch && npm publish --access public --tag beta"
+    "release:patch": "npm run build && npm version patch && npm publish --access public"
   },
   "exports": {
     ".": {
