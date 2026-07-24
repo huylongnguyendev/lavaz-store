@@ -1,6 +1,6 @@
 {
   "name": "@lavaz/store",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
