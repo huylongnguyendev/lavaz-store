@@ -23,7 +23,7 @@ export const createBox = <S, A>(
       let state = initialState;
       let listeners = new Set<(state: S) => void>();
 
-      const storageKey = persistConfig ? `lavaz-${persistConfig.name}` : null;
+      const storageKey = persistConfig ? `${persistConfig.name}` : null;
 
       const getStorage = () => {
         if (typeof window === "undefined") return null;
